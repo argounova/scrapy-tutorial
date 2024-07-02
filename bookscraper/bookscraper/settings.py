@@ -16,6 +16,8 @@ FEEDS = {
   'booksdata.json' : {'format' : 'json', 'overwrite' : True},
 }
 
+SCRAPEOPS_API_KEY = 'ff298622-7a5c-42e1-9701-0b6a2a5e7945'
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "bookscraper (+http://www.yourdomain.com)"
 
@@ -80,13 +82,16 @@ DOWNLOADER_MIDDLEWARES = {
     # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
     # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
     # 'bookscraper.middlewares.MyProxyMiddleware': 350,
+    'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
 }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
-#    "scrapy.extensions.telnet.TelnetConsole": None,
-#}
+EXTENSIONS = {
+  #  "scrapy.extensions.telnet.TelnetConsole": None,
+   'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500,
+}
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
