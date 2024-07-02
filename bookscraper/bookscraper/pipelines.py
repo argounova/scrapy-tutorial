@@ -5,7 +5,7 @@
 
 
 # useful for handling different item types with a single interface
-import psycopg2
+# import psycopg2
 from itemadapter import ItemAdapter
 
 
@@ -63,80 +63,80 @@ class BookscraperPipeline:
 
         return item
 
-class SaveToPostgreSQLPipeline:
-    def __init__(self):
-        self.conn = psycopg2.connect(
-            host='localhost',
-            user='postgres',
-            dbname='books',
-        )
-        self.cursor = self.conn.cursor()
-        self.cursor.execute("""
-            CREATE TABLE IF NOT EXISTS books (
-                id SERIAL PRIMARY KEY,
-                url TEXT,
-                title TEXT,
-                upc VARCHAR(255),
-                product_type VARCHAR(255),
-                price_excl_tax FLOAT,
-                price_incl_tax FLOAT,
-                tax FLOAT,
-                availability INT,
-                number_of_reviews INT,
-                star_rating INT,
-                category VARCHAR(255),
-                description TEXT,
-                price FLOAT
-            )
-        """)
+# class SaveToPostgreSQLPipeline:
+#     def __init__(self):
+#         self.conn = psycopg2.connect(
+#             host='localhost',
+#             user='postgres',
+#             dbname='books',
+#         )
+#         self.cursor = self.conn.cursor()
+#         self.cursor.execute("""
+#             CREATE TABLE IF NOT EXISTS books (
+#                 id SERIAL PRIMARY KEY,
+#                 url TEXT,
+#                 title TEXT,
+#                 upc VARCHAR(255),
+#                 product_type VARCHAR(255),
+#                 price_excl_tax FLOAT,
+#                 price_incl_tax FLOAT,
+#                 tax FLOAT,
+#                 availability INT,
+#                 number_of_reviews INT,
+#                 star_rating INT,
+#                 category VARCHAR(255),
+#                 description TEXT,
+#                 price FLOAT
+#             )
+#         """)
 
-    def process_item(self, item, spider):
-        self.cursor.execute(""" INSERT INTO books (
-            url,
-            title,
-            upc,
-            product_type,
-            price_excl_tax,
-            price_incl_tax,
-            tax,
-            availability,
-            number_of_reviews,
-            star_rating,
-            category,
-            description,
-            price
-        ) values (
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s
-        )""", (
-            item['url'],
-            item['title'],
-            item['upc'],
-            item['product_type'],
-            item['price_excl_tax'],
-            item['price_incl_tax'],
-            item['tax'],
-            item['availability'],
-            item['number_of_reviews'],
-            item['star_rating'],
-            item['category'],
-            item['description'],
-            item['price']
-        ))
-        self.conn.commit()
-        return item
+#     def process_item(self, item, spider):
+#         self.cursor.execute(""" INSERT INTO books (
+#             url,
+#             title,
+#             upc,
+#             product_type,
+#             price_excl_tax,
+#             price_incl_tax,
+#             tax,
+#             availability,
+#             number_of_reviews,
+#             star_rating,
+#             category,
+#             description,
+#             price
+#         ) values (
+#             %s,
+#             %s,
+#             %s,
+#             %s,
+#             %s,
+#             %s,
+#             %s,
+#             %s,
+#             %s,
+#             %s,
+#             %s,
+#             %s,
+#             %s
+#         )""", (
+#             item['url'],
+#             item['title'],
+#             item['upc'],
+#             item['product_type'],
+#             item['price_excl_tax'],
+#             item['price_incl_tax'],
+#             item['tax'],
+#             item['availability'],
+#             item['number_of_reviews'],
+#             item['star_rating'],
+#             item['category'],
+#             item['description'],
+#             item['price']
+#         ))
+#         self.conn.commit()
+#         return item
     
-    def close_spider(self, spider):
-        self.cursor.close()
-        self.conn.close()
+#     def close_spider(self, spider):
+#         self.cursor.close()
+#         self.conn.close()
