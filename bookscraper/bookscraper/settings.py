@@ -26,11 +26,16 @@ SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
 SCRAPEOPS_FAKE_BROWSER_HEADER_ENABLED = True
 SCRAPEOPS_NUM_RESULTS = 5
 
-ROTATING_PROXY_LIST = [
-    '1.2.212.35:4145',
-    '186.97.198.18:5678',
-    '103.70.159.154:8032',
-]
+PROXY_USER = ''
+PROXY_PASSWORD = ''
+PROXY_ENDPOINT = 'gate.smartproxy.com'
+PROXY_PORT = ''
+
+# ROTATING_PROXY_LIST = [
+#     '1.2.212.35:4145',
+#     '186.97.198.18:5678',
+#     '103.70.159.154:8032',
+# ]
 
 # ROTATING_PROXY_LIST_PATH = '/my/path/proxies.txt'
 
@@ -72,8 +77,9 @@ DOWNLOADER_MIDDLEWARES = {
    'bookscraper.middlewares.BookscraperDownloaderMiddleware': 543,
     # "bookscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
     'bookscraper.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware': 400,
-    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
-    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+    # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+    # 'bookscraper.middlewares.MyProxyMiddleware': 350,
 }
 
 # Enable or disable extensions
