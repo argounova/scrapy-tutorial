@@ -28,10 +28,10 @@ SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
 SCRAPEOPS_FAKE_BROWSER_HEADER_ENABLED = True
 SCRAPEOPS_NUM_RESULTS = 5
 
-PROXY_USER = ''
-PROXY_PASSWORD = ''
+PROXY_USER = 'spw0ijs0aa'
+PROXY_PASSWORD = 'r~xUyT8Hsusu7nQf90'
 PROXY_ENDPOINT = 'gate.smartproxy.com'
-PROXY_PORT = ''
+PROXY_PORT = '10001'
 
 # ROTATING_PROXY_LIST = [
 #     '1.2.212.35:4145',
@@ -81,7 +81,7 @@ DOWNLOADER_MIDDLEWARES = {
     'bookscraper.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware': 400,
     # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
     # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
-    # 'bookscraper.middlewares.MyProxyMiddleware': 350,
+    'bookscraper.middlewares.MyProxyMiddleware': 350,
     'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
 }
